@@ -5,6 +5,7 @@ using UnityEngine;
 public class Pickup : MonoBehaviour
 {
     private Inventory inventory;
+    public GameObject itemButton;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +21,9 @@ public class Pickup : MonoBehaviour
             {
                 if (inventory.isFull[i] == false)
                 {
-                    inventory.isFull[i] == true;
+                    inventory.isFull[i] = true;
+                    Instantiate(itemButton, inventory.slots[i].transform, false);
+                    Destroy(gameObject);
                     break;
                 }
             }
