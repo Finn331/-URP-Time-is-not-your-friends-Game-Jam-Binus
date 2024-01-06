@@ -3,31 +3,29 @@ using UnityEngine;
 public class FootstepSound : MonoBehaviour
 {
     public AudioClip walkingSound;
-    public AudioClip runningSound;
-    public LayerMask groundLayer;
     public Transform footTransform;
 
     private AudioSource audioSource;
-    private bool isGrounded;
+
+    private Vector3 lastPosition;
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        lastPosition = transform.position;
     }
 
     private void Update()
     {
-        // Ground Check using Raycast2D
-        isGrounded = Physics2D.Raycast(footTransform.position, Vector2.down, 0.1f, groundLayer);
-
-        // Check for player input to determine if walking or running
-        if (Input.GetKey(KeyCode.LeftShift) && isGrounded)
-        {
-            PlayFootstepSound(runningSound);
-        }
-        else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+        // Check for player input to determine if walking
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
         {
             PlayFootstepSound(walkingSound);
+        }
+        else if (IsPlayerStationary())
+        {
+            // Player is stationary, stop the footstep sound
+            audioSource.Stop();
         }
     }
 
@@ -38,5 +36,11 @@ public class FootstepSound : MonoBehaviour
             audioSource.clip = footstepSound;
             audioSource.Play();
         }
+    }
+
+    private bool IsPlayerStationary()
+    {
+        // Check if the player is not moving by comparing current position with the last position
+        return transform.position == lastPosition;
     }
 }

@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Basement Trigger
-    //public GameObject healthSystem;
+    [Header("Blur Object")]
+    public GameObject blurFloor1, blurFloor2;
 
-    // Animator
     private Animator anim;
 
-    // Player Controller
     private float horizontalInput;
     public float moveSpeed;
     public float sprintSpeed;
@@ -24,7 +22,9 @@ public class PlayerController : MonoBehaviour
 
     public LayerMask groundLayer;
     public Transform groundCheck;
-
+    public Transform wallCheck;
+    public float wallCheckDistance = 0.1f;
+    public GameObject audioSource;
 
     private void Start()
     {
@@ -34,29 +34,38 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        // Ground Check
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
 
-        // Player Movement
         horizontalInput = Input.GetAxis("Horizontal");
         currentSpeed = isSprinting ? sprintSpeed : moveSpeed;
         Vector2 moveDirection = new Vector2(horizontalInput, 0);
         rb.velocity = new Vector2(moveDirection.x * currentSpeed, rb.velocity.y);
         Flip();
 
-        // Set animator parameters for walking and running
         anim.SetFloat("Speed", Mathf.Abs(horizontalInput));
 
-        // Sprinting
-        if (Input.GetKey(KeyCode.LeftShift) && Mathf.Abs(horizontalInput) > 0)
+        // Wall Checking
+        if (IsFacingWall())
         {
-            isSprinting = true;
-            anim.SetBool("isRunning", true);
+            // If facing a wall, play the idle animation
+            anim.SetBool("isRunning", false);
+            audioSource.SetActive(false);
         }
         else
         {
-            isSprinting = false;
-            anim.SetBool("isRunning", false);
+            // Sprinting
+            if (Mathf.Abs(horizontalInput) > 0.1f)
+            {
+                isSprinting = true;
+                anim.SetBool("isRunning", true);
+                audioSource.SetActive(true);
+            }
+            else
+            {
+                isSprinting = false;
+                anim.SetBool("isRunning", false);
+                audioSource.SetActive(false);
+            }
         }
 
         // Jumping
@@ -77,30 +86,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // private void OnControllerColliderHit(ControllerColliderHit hit)
-    // {
-    //     IInventoryItem item = hit.collider.GetComponent<IInventoryItem>();
-    //     if (item != null)
-    //     {
-    //         inventory.AddItem(item);
-    //     }
-    // }
+    private bool IsFacingWall()
+    {
+        float direction = isFacingRight ? 1f : -1f;
+        Vector2 rayOrigin = new Vector2(wallCheck.position.x, wallCheck.position.y);
+        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * direction, wallCheckDistance, groundLayer);
 
-    //// Basement Trigger
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.tag == "Basement")
-    //    {
-    //        healthSystem.SetActive(true);
-    //    }
-    //}
+        // Return true if there's a wall in front
+        return hit.collider != null;
+    }
 
-    //// Basement Exit Trigger
-    //private void OnTriggerExit2D(Collider2D collision)
-    //{
-    //    if (collision.tag == "BasementExit")
-    //    {
-    //        healthSystem.SetActive(false);
-    //    }
-    //}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "DoorF1")
+        {
+            blurFloor1.SetActive(false);
+            blurFloor2.SetActive(true);
+        }
+        if (collision.tag == "DoorF2")
+        {
+            blurFloor1.SetActive(true);
+            blurFloor2.SetActive(false);
+        }
+    }
 }

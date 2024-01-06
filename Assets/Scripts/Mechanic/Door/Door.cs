@@ -6,8 +6,10 @@ public class Door : MonoBehaviour
 {
     public GameObject interactButton;
     public GameObject teleportTargetB;
+    
 
     private bool canTeleport = false;
+
 
     // Teleport function
     private void TeleportToB()

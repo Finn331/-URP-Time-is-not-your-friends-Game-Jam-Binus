@@ -1,21 +1,21 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
-
+using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour
 {
-    [Header ("Basement Trigger")]
+    [Header("Basement Trigger")]
     public GameObject basementEnter, basementExit;
 
-    [Header ("Healing Potion")]
+    [Header("Healing Potion")]
     public GameObject[] healthPotion;
 
     [Header("Health System")]
     public int maxHealth = 100;
     private int currentHealth;
 
-    public TextMeshProUGUI healthText; // Reference to the TextMeshPro component for displaying health
+    public Slider healthSlider; // Reference to the TextMeshPro component for displaying health
 
     private void Start()
     {
@@ -31,7 +31,7 @@ public class HealthSystem : MonoBehaviour
 
         currentHealth = maxHealth;
 
-        if (healthText != null)
+        if (healthSlider != null)
         {
             UpdateHealthText();
         }
@@ -47,7 +47,7 @@ public class HealthSystem : MonoBehaviour
 
             // Reduce health by 1 every minute
             TakeDamage(1);
-            
+
         }
     }
 
@@ -81,12 +81,13 @@ public class HealthSystem : MonoBehaviour
 
     private void UpdateHealthText()
     {
-        if (healthText != null)
+        if (healthSlider != null)
         {
-            healthText.text = currentHealth.ToString();
+            // Calculate the health percentage (0 to 1) and set the slider value
+            healthSlider.value = (float)currentHealth / maxHealth;
         }
     }
-    
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Basement")
@@ -134,6 +135,6 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
-    
+
 
 }
