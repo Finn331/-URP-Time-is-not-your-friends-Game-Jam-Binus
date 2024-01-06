@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public Transform wallCheck;
     public float wallCheckDistance = 0.1f;
+    public GameObject footstepSound;
 
     private void Start()
     {
@@ -48,6 +49,7 @@ public class PlayerController : MonoBehaviour
         {
             // If facing a wall, play the idle animation
             anim.SetBool("isRunning", false);
+            footstepSound.SetActive(false);
         }
         else
         {
@@ -56,11 +58,13 @@ public class PlayerController : MonoBehaviour
             {
                 isSprinting = true;
                 anim.SetBool("isRunning", true);
+                
             }
             else
             {
                 isSprinting = false;
                 anim.SetBool("isRunning", false);
+                footstepSound.SetActive(true);
             }
         }
 
