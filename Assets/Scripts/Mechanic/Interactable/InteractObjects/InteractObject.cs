@@ -10,6 +10,7 @@ public class InteractObject : MonoBehaviour
     [SerializeField]
     private ContactFilter2D z_Filter;
     private List<Collider2D> z_CollidedObjects = new List<Collider2D>(1);
+    public GameObject targetObject;
 
     void Start()
     {
@@ -36,6 +37,7 @@ public class InteractObject : MonoBehaviour
         if (Input.GetKey(KeyCode.E))
         {
             OnInteract();
+            StartCoroutine(DeactivateAfterDuration());
         }
     }
 
@@ -48,11 +50,22 @@ public class InteractObject : MonoBehaviour
             Debug.Log("INTERACT WITH " + name);
         }        
     }
+
+    IEnumerator DeactivateAfterDuration()
+    {
+        targetObject.SetActive(true);
+        // Tunggu selama activationDuration
+        yield return new WaitForSeconds(3f);
+        targetObject.SetActive(false);
+
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
             interactButton.SetActive(false);
+            targetObject.SetActive(false);
         }
     }
 }
