@@ -60,6 +60,7 @@ public class Door : MonoBehaviour
         if (canTeleport && Input.GetKeyDown(KeyCode.E))
         {
             TeleportToB();
+            Debug.Log("teleport ke " + name);
         }
     }
 }
