@@ -5,36 +5,30 @@ using UnityEngine;
 public class LightSwitch : MonoBehaviour
 {
     public GameObject lampu;
-    private bool isLightOn = true;
     public GameObject interactButton;
 
     void Start()
     {
-        
+        interactButton.SetActive(false);
+        lampu.SetActive(false);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (interactButton.activeSelf && Input.GetKeyDown(KeyCode.E))
         {
-            ToggleLight();
+            ToggleLamp();
         }
     }
 
-    public void ToggleLight()
+    void ToggleLamp()
     {
-        // Ubah status lampu berdasarkan kondisi sebelumnya
-        isLightOn = !isLightOn;
-        Debug.Log("Lampu Hidup");
-
-        // Aktifkan atau nonaktifkan lampu berdasarkan status
-        lampu.SetActive(isLightOn);
-        Debug.Log("Lampu Mati");
+        lampu.SetActive(!lampu.activeSelf);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.CompareTag("Player"))
         {
             interactButton.SetActive(true);
         }
@@ -42,7 +36,7 @@ public class LightSwitch : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.CompareTag("Player"))
         {
             interactButton.SetActive(false);
         }

@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public Transform wallCheck;
     public float wallCheckDistance = 0.1f;
-    public GameObject footstepSound;
+    //public GameObject footstepSound;
 
     private void Start()
     {
@@ -42,29 +42,40 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(moveDirection.x * currentSpeed, rb.velocity.y);
         Flip();
 
-        anim.SetFloat("Speed", Mathf.Abs(horizontalInput));
-
         // Wall Checking
         if (IsFacingWall())
         {
             // If facing a wall, play the idle animation
             anim.SetBool("isRunning", false);
-            footstepSound.SetActive(false);
+            anim.SetBool("isWalking", false);
+            //footstepSound.SetActive(false);
         }
         else
         {
             // Sprinting
-            if (Mathf.Abs(horizontalInput) > 0.1f)
+            if (Input.GetKey(KeyCode.LeftShift) && Mathf.Abs(horizontalInput) > 0.1f)
             {
                 isSprinting = true;
                 anim.SetBool("isRunning", true);
-                
+                anim.SetBool("isWalking", false);
+                //footstepSound.SetActive(true);
             }
             else
             {
                 isSprinting = false;
                 anim.SetBool("isRunning", false);
-                footstepSound.SetActive(true);
+
+                // Walking
+                if (Mathf.Abs(horizontalInput) > 0.1f)
+                {
+                    anim.SetBool("isWalking", true);
+                    //footstepSound.SetActive(true);
+                }
+                else
+                {
+                    anim.SetBool("isWalking", false);
+                    //footstepSound.SetActive(false);
+                }
             }
         }
 
