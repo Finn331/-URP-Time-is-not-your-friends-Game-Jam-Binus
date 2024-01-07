@@ -12,10 +12,12 @@ public class HealthSystem : MonoBehaviour
     public GameObject[] healthPotion;
 
     [Header("Health System")]
-    public int maxHealth = 100;
+    public int maxHealth = 70;
     private int currentHealth;
 
     public Slider healthSlider; // Reference to the TextMeshPro component for displaying health
+
+    public GameObject gameoverObject;
 
     private void Start()
     {
@@ -77,6 +79,8 @@ public class HealthSystem : MonoBehaviour
     {
         Debug.Log("Player has died!");
         // Add any additional actions upon death
+        gameoverObject.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     private void UpdateHealthText()
