@@ -4,6 +4,7 @@ public class InteractableObject : MonoBehaviour
 {
     public GameObject interactButton;
     private Animator anim;
+    public AudioSource audioSource;
 
     private void Start()
     {
@@ -34,6 +35,7 @@ public class InteractableObject : MonoBehaviour
             if (anim != null)
             {
                 anim.SetBool("isOpening", true);
+                audioSource.Play();
             }
 
             interactButton.SetActive(false);
