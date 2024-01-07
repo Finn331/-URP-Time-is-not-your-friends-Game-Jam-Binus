@@ -13,6 +13,7 @@ public class MainMenuManager : MonoBehaviour
     {
         MainPanel.SetActive(true);
         SettingPanel.SetActive(false);
+        Cursor.visible = true;
     }
 
     // Update is called once per frame
@@ -35,7 +36,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void Play()
     {
-        SceneManager.LoadScene("2.Gameplay");
+        SceneManager.LoadScene("3.Playground");
     }
 
     public void ExitGame()
