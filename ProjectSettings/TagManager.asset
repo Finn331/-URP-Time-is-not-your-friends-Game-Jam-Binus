@@ -10,6 +10,11 @@ TagManager:
   - DoorF1
   - DoorF2
   - Ground
+  - DoorF3
+  - DoorF4
+  - DoorF4P1
+  - DoorF4P2
+  - DoorF4P3
   layers:
   - Default
   - TransparentFX

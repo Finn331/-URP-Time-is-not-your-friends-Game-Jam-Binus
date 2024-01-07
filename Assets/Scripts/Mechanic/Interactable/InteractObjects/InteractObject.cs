@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class InteractObject : MonoBehaviour
 {
-   private bool Interacted = false;
-   public GameObject interactButton;
+    private bool Interacted = false;
+    private bool isInRange = false;  // Tambahkan variabel isInRange
+    public GameObject interactButton;
     private Collider2D z_Collider;
     [SerializeField]
     private ContactFilter2D z_Filter;
@@ -20,44 +21,46 @@ public class InteractObject : MonoBehaviour
     void Update()
     {
         z_Collider.OverlapCollider(z_Filter, z_CollidedObjects);
-        foreach(var o in z_CollidedObjects)
+
+        // Reset the interaction state on each frame
+        Interacted = false;
+
+        foreach (var o in z_CollidedObjects)
         {
             OnCollided(o.gameObject);
-            
         }
-    }
 
-    private void OnCollided(GameObject collidedObject)
-    {
-        Debug.Log("Collided With " + collidedObject.name);
-        if (collidedObject.tag == "Player")
-        {
-            interactButton.SetActive(true);
-        }
-        if (Input.GetKey(KeyCode.E))
+        // Check if the player is in range before processing "E" key input
+        if (isInRange && Input.GetKey(KeyCode.E) && !Interacted)
         {
             OnInteract();
             StartCoroutine(DeactivateAfterDuration());
         }
     }
 
+    private void OnCollided(GameObject collidedObject)
+    {
+        
+        if (collidedObject.tag == "Player")
+        {
+            interactButton.SetActive(true);
+            // Set isInRange to true when the player is in range
+            isInRange = true;
+        }
+    }
 
     public void OnInteract()
     {
-        if (!Interacted)
-        {
-            Interacted = true;
-            Debug.Log("INTERACT WITH " + name);
-        }        
+        Interacted = true;
+        Debug.Log("INTERACT WITH " + name);
     }
 
     IEnumerator DeactivateAfterDuration()
     {
         targetObject.SetActive(true);
-        // Tunggu selama activationDuration
+        // Wait for the activation duration
         yield return new WaitForSeconds(3f);
         targetObject.SetActive(false);
-
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -66,6 +69,8 @@ public class InteractObject : MonoBehaviour
         {
             interactButton.SetActive(false);
             targetObject.SetActive(false);
+            // Reset isInRange to false when the player exits the collider
+            isInRange = false;
         }
     }
 }

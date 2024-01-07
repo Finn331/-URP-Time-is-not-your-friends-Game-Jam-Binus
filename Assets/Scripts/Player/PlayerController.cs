@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Blur Object")]
-    public GameObject blurFloor1, blurFloor2;
+    public GameObject blurFloor1, blurFloor2, blurFloor3, BlurFloor4;
 
     private Animator anim;
 
@@ -113,11 +113,50 @@ public class PlayerController : MonoBehaviour
         {
             blurFloor1.SetActive(false);
             blurFloor2.SetActive(true);
+            blurFloor3.SetActive(true);
+            BlurFloor4.SetActive(true);
         }
         if (collision.tag == "DoorF2")
         {
             blurFloor1.SetActive(true);
             blurFloor2.SetActive(false);
+            blurFloor3.SetActive(true);
+            BlurFloor4.SetActive(true);
+        }
+        if (collision.tag == "DoorF3")
+        {
+            blurFloor1.SetActive(true);
+            blurFloor2.SetActive(true);
+            blurFloor3.SetActive(false);
+            BlurFloor4.SetActive(true);
+        }
+        if (collision.tag == "DoorF4")
+        {
+            blurFloor1.SetActive(true);
+            blurFloor2.SetActive(true);
+            blurFloor3.SetActive(true);
+            BlurFloor4.SetActive(false);
+        }
+        if (collision.tag == "DoorF4P1")
+        {
+            blurFloor1.SetActive(true);
+            blurFloor2.SetActive(true);
+            blurFloor3.SetActive(true);
+            BlurFloor4.SetActive(false);
+        }
+        if (collision.tag == "DoorF4P2")
+        {
+            blurFloor1.SetActive(true);
+            blurFloor2.SetActive(true);
+            blurFloor3.SetActive(true);
+            BlurFloor4.SetActive(false);
+        }
+        if (collision.tag == "DoorF4P3")
+        {
+            blurFloor1.SetActive(true);
+            blurFloor2.SetActive(true);
+            blurFloor3.SetActive(true);
+            BlurFloor4.SetActive(false);
         }
     }
 }

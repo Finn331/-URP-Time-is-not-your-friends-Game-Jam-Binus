@@ -6,6 +6,7 @@ public class LightSwitch : MonoBehaviour
 {
     public GameObject lampu;
     public GameObject interactButton;
+    public AudioSource switchSFX;
 
     void Start()
     {
@@ -18,6 +19,7 @@ public class LightSwitch : MonoBehaviour
         if (interactButton.activeSelf && Input.GetKeyDown(KeyCode.E))
         {
             ToggleLamp();
+            switchSFX.Play();
         }
     }
 
