@@ -1,7 +1,22 @@
 fileFormatVersion: 2
-guid: 63f066144f5de3b41b7d6deba0c02a55
+guid: 967aab33941501f4683ad346209fb799
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -4530426593466845105
+    second: blueSheet_0
+  - first:
+      213: 2929053664434463476
+    second: blueSheet_1
+  - first:
+      213: -3752399328423980779
+    second: blueSheet_2
+  - first:
+      213: 6954334571014588244
+    second: blueSheet_3
+  - first:
+      213: 5137063763429501089
+    second: blueSheet_4
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -48,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 500
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -65,14 +80,14 @@ TextureImporter:
   ignorePngGamma: 0
   applyGammaDecoding: 0
   swizzle: 50462976
-  cookieLightType: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -85,7 +100,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -94,11 +109,11 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Android
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -111,7 +126,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -123,13 +138,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: office_0
+      name: blueSheet_0
       rect:
         serializedVersion: 2
-        x: 68
-        y: 139
-        width: 12
-        height: 15
+        x: 0
+        y: 207
+        width: 190
+        height: 49
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc14fa8a24aad4d4a8f3b3af21ffe873
-      internalID: 29898249
+      spriteID: f48fc673401b021c0800000000000000
+      internalID: -4530426593466845105
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: office_1
+      name: blueSheet_1
       rect:
         serializedVersion: 2
-        x: 21
-        y: 96
-        width: 6
-        height: 9
+        x: 190
+        y: 207
+        width: 190
+        height: 49
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +173,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e12bff01ede8de43800f3e30538475d
-      internalID: 1327326123
+      spriteID: 4f22cacf9c616a820800000000000000
+      internalID: 2929053664434463476
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: office_2
+      name: blueSheet_2
       rect:
         serializedVersion: 2
-        x: 16
-        y: 47
-        width: 16
-        height: 17
+        x: 0
+        y: 64
+        width: 190
+        height: 49
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,20 +194,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d605e1fc0b2b28642b62fc229ba7f8d2
-      internalID: 1439035218
+      spriteID: 511dfdd11bcccebc0800000000000000
+      internalID: -3752399328423980779
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: office_3
+      name: blueSheet_3
       rect:
         serializedVersion: 2
-        x: 82
-        y: 32
-        width: 11
-        height: 12
+        x: 0
+        y: 162
+        width: 190
+        height: 45
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,20 +215,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 67ebd4397929dfa4999b084ddc296025
-      internalID: 1504292881
+      spriteID: 4570b8a5272c28060800000000000000
+      internalID: 6954334571014588244
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: office_4
+      name: blueSheet_4
       rect:
         serializedVersion: 2
-        x: 99
-        y: 135
-        width: 4
-        height: 5
+        x: 190
+        y: 162
+        width: 190
+        height: 45
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,8 +236,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 740954746ecf8a1438304690c139a68d
-      internalID: 422030350
+      spriteID: 1a82fb786448a4740800000000000000
+      internalID: 5137063763429501089
       vertices: []
       indices: 
       edges: []
@@ -238,11 +253,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      office_0: 29898249
-      office_1: 1327326123
-      office_2: 1439035218
-      office_3: 1504292881
-      office_4: 422030350
+      blueSheet_0: -4530426593466845105
+      blueSheet_1: 2929053664434463476
+      blueSheet_2: -3752399328423980779
+      blueSheet_3: 6954334571014588244
+      blueSheet_4: 5137063763429501089
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
