@@ -1,19 +1,18 @@
-using System.Collections;
 using UnityEngine;
 
 public class LightSwitchDC : MonoBehaviour
 {
     public GameObject[] lamps;
     public GameObject interactButton;
-    public AudioClip switchOnSound;
+    // public AudioClip switchOnSound;
     private int currentLampIndex = 0;
-    private AudioSource audioSource;
+    public AudioSource audioSource;
+    public AudioClip interactSound;  // Tambahkan AudioClip interactSound
 
     void Start()
     {
         interactButton.SetActive(false);
         SetLampState(false);
-        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -29,9 +28,10 @@ public class LightSwitchDC : MonoBehaviour
         SetLampState(!lamps[currentLampIndex].activeSelf);
         currentLampIndex = (currentLampIndex + 1) % lamps.Length;
 
-        if (switchOnSound != null && audioSource != null)
+        // Memainkan suara interactSound pada AudioSource
+        if (audioSource != null && interactSound != null)
         {
-            audioSource.PlayOneShot(switchOnSound);
+            audioSource.PlayOneShot(interactSound);
         }
     }
 
